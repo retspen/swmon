@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "Monitoring SouthSide .NET"
+AuthUserFile /usr/local/swmon/admin/.htpasswd
+require valid-user admin
+#deny from all

@@ -1,0 +1,43 @@
+/* RESET */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, font, img, dl, dt, dd, ol, ul, li, legend {margin:0px;padding:0px;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;list-style:none;text-align:center;}
+a img {border: none;}
+ol li {list-style: decimal outside;}
+fieldset {border:0;padding:0;}
+    
+body { font: normal 95% 'Droid Sans', arial, serif; }
+    
+div#container { width: auto; margin: 0 auto; padding: 0 0;  }
+p { margin: 1em 0; max-width: 700px; }
+h1 + p { margin-top: 0; }
+    
+h1, h2 { font-family: Georgia, Times, serif; }
+h1 { font-size: 2em; margin-bottom: .75em; }
+h2 { font-size: 1.5em; margin: 0 0.5em; border-bottom: 1px solid #999; padding-bottom: 5px; } 
+h3 { font-weight: bold; }
+    
+ul li { list-style: disc; margin-left: 1em; }
+ol li { margin-left: 1.25em; }
+    
+div.side-by-side { width: 100%; margin-bottom: 0; }
+div.side-by-side > div { float: left; width: 50%; }
+div.side-by-side > div > em { margin-bottom: 10px; display: block; }
+    
+a { color: #112046; text-decoration: none; }
+table { text-align:left; margin-left:auto; margin-right:auto; margin-bottom: 5px; } 
+
+.faqs em { display: block; }
+    
+.clearfix:after {
+   content: "\0020";
+   display: block;
+   height: 0;
+   clear: both;
+   overflow: hidden;
+   visibility: hidden;
+}
+    
+footer {
+   margin-top: 2em;
+   border-top: 1px solid #666;
+   padding-top: 5px;
+}
