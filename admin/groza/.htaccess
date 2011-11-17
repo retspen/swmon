@@ -1,6 +1,0 @@
-<Limit GET>
- Order deny,allow
- Allow from  94.240.160.3 94.240.160.5 94.240.160.8 94.240.160.250
- Deny from all
-</Limit>
-

@@ -4,10 +4,3 @@ AuthName "Monitoring SouthSide .NET"
 AuthUserFile /usr/local/swmon/admin/.htpasswd
 require valid-user admin
 </Files>
-
-<Limit GET>
- Order deny,allow
- Allow from  94.240.160.3 94.240.160.4 94.240.160.5 94.240.160.8 94.240.160.10 94.240.160.100 94.240.160.123 94.240.161.57 94.240.168.250 94.240.160.250 94.240.165.245  
- Deny from all
-</Limit>
-

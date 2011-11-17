@@ -57,12 +57,7 @@ if($numdev > 0) {
 <td>
 <div>
 <select name="name" title="Выберите устройство..." class="chzn-select" style="width:150px;" id="name" tabindex="1">
-    <option value="40L.">40 Лет Победы</option>
-    <option value="AVT.">Автозаводская</option>
-    <option value="GAV.">Гаврилова</option>
-    <option value="NG.">Нагнибеды</option>
-    <option value="NOV.">Новокузнецкая</option>
-    <option value="ST.">Стешенко</option>
+    <option value="Dev">device</option>
 </select>
 </div>
 </td>
@@ -81,9 +76,6 @@ if($numdev > 0) {
 <div>
 <select name="letter" title="Выберите букву..." class="chzn-select" style="width:50px;" id="letter" tabindex="3">
     <option value="/">-</option>
-    <option value="A/">А</option>
-    <option value="B/">Б</option>
-    <option value="G/">Г</option>
 </select>
 </div>
 </td>

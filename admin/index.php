@@ -23,7 +23,6 @@ a {
 <a href=/admin/phone>SMS оповещение</a><br /><br />
 <a href=/admin/logs/logports.php>Логи портов</a><br /><br />
 <a href=/admin/logs/logsw.php>Логи устройств</a><br /><br />
-<a href=/admin/groza>Гроза</a>
 
 </center>
 </body>
