@@ -31,8 +31,8 @@ $homedir = "/usr/local/swmon";
 /* make sure these values refect your actual database/host/user/password */
 $database_default = "swmon";
 $database_hostname = "localhost";
-$database_username = "swmon";
-$database_password = "fFvdJ5zt8";
+$database_username = "root";
+$database_password = "";
 
 /* db connect */
 $dbconnect = mysql_connect($database_hostname,$database_username,$database_password) or die ("Connect on base users failed.");
