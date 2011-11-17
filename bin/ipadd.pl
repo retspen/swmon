@@ -12,7 +12,7 @@ $t->open("$host");
 $t->put("admin\n");
 my $ok=$t->waitfor('/assword:/');
 my $ok = 1;
-if($ok) {$t->put("SuperSSadm1n\n");}
+if($ok) {$t->put("passwd\n");}
 $t->put("config\n");
 $t->put("ip source-guard binding $mac vlan $vlan $ip interface ethernet 1/$port \n");
 $t->put("exit\n");

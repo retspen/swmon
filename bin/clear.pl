@@ -9,7 +9,7 @@ $t->open("$host");
 $t->put("admin\n");
 my $ok=$t->waitfor('/assword:/');
 my $ok = 1;
-if($ok) {$t->put("SuperSSadm1n\n");}
+if($ok) {$t->put("passwd\n");}
 $t->put("clear counters ethernet 1/$port \n");
 $t->put("exit\n");
 $t->close;
