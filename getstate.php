@@ -32,9 +32,10 @@ $alldev = mysql_query($sql);
 while($rowsql = mysql_fetch_row($alldev)){
 
     $state = snmpget("$rowsql[1]", "public", "sysName.0");
+    exec("ping -c 1 -w 10 $rowsql[1]",$output, $stateping);
 
     /* Обновление статуса свитча */
-    if($state == NULL) {
+    if($state == NULL and $stateping == 0) {
 	$sql = "UPDATE device SET state_id=2 WHERE id=$rowsql[0]";
 	$swstate = mysql_query($sql);
 
