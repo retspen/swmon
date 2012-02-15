@@ -87,6 +87,23 @@ if($numdev > 0) {
 </table>
 
 <?php
+
+if(!isset($_GET['device'])) {
+	if($numdev > 0) {
+
+		while($showdev = mysql_fetch_row($statedev)) {
+
+			$regdevname = substr($showdev[0],0,strpos($showdev[0],'.')+1);
+			$regdevnum = preg_replace("#[^\.]*\.#s",'',$showdev[0]);
+
+			echo "<br /><h3><font color=\"red\">Недоступные устройства:</h3></font><br />";
+			print "<a href=/?name=$regdevname&num=$regdevnum&device>$showdev[0]</a><br/>";
+
+		}
+
+	}
+}
+
 if(isset($_GET['device'])) {
 	if ($name == NULL || $num == NULL){
     		echo "<font color=\"red\">Вы не выбрали устройство!</font>\n";
