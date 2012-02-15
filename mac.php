@@ -47,7 +47,7 @@ a {
 
 <?php 
 
-$sql = "SELECT d.ip, s.snmp1, s.snmp3, s.snmp4, s.snmp5, s.snmp6, s.snmp7
+$sql = "SELECT d.ip, s.snmp1, s.snmp3, s.snmp4, s.snmp5, s.snmp6, s.snmp7, s.snmp2
 	   FROM device d
 	   LEFT JOIN snmp s
 	   ON d.snmp_id=s.id
@@ -55,12 +55,14 @@ $sql = "SELECT d.ip, s.snmp1, s.snmp3, s.snmp4, s.snmp5, s.snmp6, s.snmp7
 $res = mysql_query($sql);
 $row = mysql_fetch_row($res);
 
-echo "| <a href=/>Главная</a> | <a href=/port.php?id=$id&port=$port>Назад</a> | <a href=telnet://$row[0]>Telnet</a> | <a onclick=\"window.open('http://dhcp.ss.zp.ua/','TIP','width=850,height=650,status=0,menubar=0,location=0,resizable=0,directories=0,toolbar=0,scrollbar=0');return false;\" href=\"http://dhcp.ss.zp.ua/\">DHCP</a> | <br />";
+echo "| <a href=/>Главная</a> | <a href=/port.php?id=$id&port=$port>Назад</a> | <a href=telnet://$row[0]>Telnet</a> | <a onclick=\"window.open('http://dhcp.ss.zp.ua/','TIP','width=850,height=650,status=0,menubar=0,location=0,resizable=0,directories=0,toolbar=0,scrollbar=0');return false;\" href=\"http://dhcp.ss.zp.ua/\">DHCP</a> | <a href=/mac.php?id=$id&port=$port&save>Save</a> |<br />";
 
 /* Выключение и включение порта */
-echo "<font color=green><h4>Статус:</h4></font>";
+echo "<hr style='width: 300px;'><br />";
+//echo "<br />";
+//echo "<font color=green><h4>Статус:</h4></font>";
 
-$prst = snmpget("$row[0]","private","ifOperStatus.$port");
+$prst = snmpget("$row[0]","public","ifAdminStatus.$port");
 
 if(ereg("Down",$prst) or ereg("down",$prst))
 {
@@ -69,6 +71,17 @@ if(ereg("Down",$prst) or ereg("down",$prst))
 else
 {
     print "<a href=\"mac.php?id=$id&port=$port&portoff\"><b>[Выключить порт]</b></a>";
+}
+
+echo "<br /><br />";
+
+/* IPTV */
+$iptv = snmpget("$row[0]","public","$row[7].$port");
+
+if(ereg("2", $iptv) || ereg("1", $iptv)) {
+        print "<a href=\"mac.php?id=$id&port=$port&iptvoff\"><b>[Выключить IPTV]</b></a>";
+} else {
+        print "<a href=\"mac.php?id=$id&port=$port&iptvon\"><b>[Включить IPTV]</b></a>";
 }
 
 /* Description */
@@ -193,6 +206,7 @@ $stripsog = substr($ipsog, 11, strlen($ipsog)-11);
 $iptype = snmpget("$row[0]","public","$row[6].$vl.$decmac");
 
 if(ereg("3",$iptype)) {
+    echo "<font color=red><b>Для удаления MAC кнока 1 а потом 2</b></font><br /><br />";
 	echo "<a onclick=\"window.open('http://dhcp.ss.zp.ua/logdhcp.php?show_log=".$stripsog."','TIP','width=850,height=650,status=0,menubar=0,location=0,resizable=0,directories=0,toolbar=0,scrollbar=0');return false;\" href=\"http://dhcp.ss.zp.ua/\">$stripsog</a>\n";
     ?>
     <form method = "post" action = "mac.php?id=<?php echo $id; ?>&port=<?php echo $port; ?>&ipsoclear">
@@ -200,7 +214,6 @@ if(ereg("3",$iptype)) {
                <input type = "submit"
                       value = "1.Удалить">
      </form>
-     <font color=red>Для удаления MAC последовательность с 1 по 2</font><br /><br />
     <?php
 } else {
     ?>
@@ -215,12 +228,6 @@ if(ereg("3",$iptype)) {
      </form>
     <?php
 }
-
-?>
-<form method = "post" action = "mac.php?id=<?php echo $id; ?>&port=<?php echo $port; ?>&save">
-	<input type = "submit" value = "Сохранить">
-</form>
-<?php
 
 /* Actions */
 if(isset($_GET['maxoff'])) {
@@ -284,6 +291,14 @@ if(isset($_GET['maxoff'])) {
     die();
 } else if(isset($_GET['portoff'])) {
     snmpset("$row[0]","private","ifAdminStatus.$port","i","2");
+    header("location:mac.php?id=$id&port=$port");
+    die();
+} else if(isset($_GET['iptvon'])) {
+    snmpset("$row[0]","private","$row[7].$port","i","2");
+    header("location:mac.php?id=$id&port=$port");
+    die();
+} else if(isset($_GET['iptvoff'])) {
+    snmpset("$row[0]","private","$row[7].$port","i","0");
     header("location:mac.php?id=$id&port=$port");
     die();
 }
