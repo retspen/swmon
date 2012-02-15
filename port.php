@@ -97,15 +97,6 @@ else
 
 echo "<br /><br />";
 
-/* IPTV */
-$iptv = snmpget("$row[0]","public","$row[5].$row[3]");
-
-if(ereg("2", $iptv) || ereg("1", $iptv)) {
-        print "<a href=\"port.php?id=$id&port=$port&iptvoff\"><b>[Выключить IPTV]</b></a>";
-} else {
-        print "<a href=\"port.php?id=$id&port=$port&iptvon\"><b>[Включить IPTV]</b></a>";
-}
-
 /* Actions */
 if(isset($_GET['porton'])) {
     snmpset("$row[0]","private","ifAdminStatus.$port","i","1");
